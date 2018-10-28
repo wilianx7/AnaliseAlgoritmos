@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,9 +17,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import br.com.analisealgoritmos.model.MetodosSimplesModel;
+import br.com.analisealgoritmos.model.RelatorioModel;
 import br.com.analisealgoritmos.report.RelatorioMetodosSimples;
 
-public class OrdenacaoSimplesWindow extends AbstractWindowFrame{
+public class OrdenacaoSimplesWindow extends AbstractWindowFrame {
 	private static final long serialVersionUID = 2270343523675930815L;
 	
 	//Paineis.
@@ -55,9 +57,14 @@ public class OrdenacaoSimplesWindow extends AbstractWindowFrame{
 	private MetodosSimplesModel modelMS;
 	@SuppressWarnings("unused")
 	private RelatorioMetodosSimples relatorioMS;
+	private RelatorioModel relatorioFinal;
 	
-	public OrdenacaoSimplesWindow() {		
+	//Desktop.
+	private JDesktopPane desktop;
+	
+	public OrdenacaoSimplesWindow(JDesktopPane desktop) {		
 		super("Algoritmos de Ordenação Simples");
+		this.desktop = desktop;
 		setBackground(new Color(250, 250, 250));
 		criarComponentes();
 	}
@@ -238,7 +245,13 @@ public class OrdenacaoSimplesWindow extends AbstractWindowFrame{
 							  tipoCaso, Integer.parseInt(qtdValores.getText()));
 					
 					relatorioMS = new RelatorioMetodosSimples(modelMS);
+					relatorioFinal = relatorioMS.getRelatorioFinal();
+					relatorioFinal.setTempo(checkTempo.isSelected());
+					relatorioFinal.setTrocas(checkTrocas.isSelected());
+					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
 					
+					RelatorioSimplesWindow relatorioSimplesWindow = new RelatorioSimplesWindow(relatorioFinal);
+					abrirFrame(relatorioSimplesWindow);
 				}
 			}
 		});
@@ -309,6 +322,12 @@ public class OrdenacaoSimplesWindow extends AbstractWindowFrame{
 		}
 			
 		return false;
+	}
+	
+	private void abrirFrame(AbstractWindowFrame frame) {
+		desktop.add(frame);
+
+		frame.showFrame();
 	}
 
 }

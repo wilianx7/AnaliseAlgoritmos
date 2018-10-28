@@ -1,5 +1,6 @@
 package br.com.analisealgoritmos.report;
 
+
 import br.com.analisealgoritmos.model.BubbleSortModel;
 import br.com.analisealgoritmos.model.CombSortModel;
 import br.com.analisealgoritmos.model.InsertionSortModel;
@@ -14,7 +15,7 @@ import br.com.analisealgoritmos.sortingalgorithms.SelectionSort;
 public class RelatorioMetodosSimples {
 	
 	private MetodosSimplesModel modelMS;
-	private RelatorioModel relatorioFinal;
+	private RelatorioModel relatorioFinal = new RelatorioModel();
 	
 	//Insertion Sort.
 	@SuppressWarnings("unused")
@@ -38,45 +39,56 @@ public class RelatorioMetodosSimples {
 
 	public RelatorioMetodosSimples(MetodosSimplesModel modelMS) {
 		this.modelMS = modelMS;
+		this.relatorioFinal.setQtdValores(this.modelMS.getQtdValores());
 		construirRelatorio();
 	}
 	
+	//Constroi o relatório de acordo com as opções setadas pelo usuário.
 	public void construirRelatorio() {
 		
 		//Insertion Sort.
 		if(modelMS.isCheckInsertionSort()) {
 			
 			insertionSort = new InsertionSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), insertionSortModel);
-			System.out.println("**********\nInsertion Sort\n");
-			System.out.println("Tempo: " + insertionSortModel.getTempo() + "Trocas: " + insertionSortModel.getTrocas() 
-			+ "Comparações: " + insertionSortModel.getComparacoes());
+			relatorioFinal.setInsertionSortModel(insertionSortModel);
+//			System.out.println("**********\nInsertion Sort\n");
+//			System.out.println("Tempo: " + insertionSortModel.getTempo() + "Trocas: " + insertionSortModel.getTrocas() 
+//			+ "Comparações: " + insertionSortModel.getComparacoes());
 		}
 		
 		//Bubble Sort.
 		if(modelMS.isCheckBubbleSort()) {
 			
 			bubbleSort = new BubbleSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), bubbleSortModel);
-			System.out.println("**********\nBubble Sort\n");
-			System.out.println("Tempo: " + bubbleSortModel.getTempo() + "Trocas: " + bubbleSortModel.getTrocas() 
-			+ "Comparações: " + bubbleSortModel.getComparacoes());
+			relatorioFinal.setBubbleSortModel(bubbleSortModel);
+//			System.out.println("**********\nBubble Sort\n");
+//			System.out.println("Tempo: " + bubbleSortModel.getTempo() + "Trocas: " + bubbleSortModel.getTrocas() 
+//			+ "Comparações: " + bubbleSortModel.getComparacoes());
 		}
 		
 		//Selection Sort.
 		if(modelMS.isCheckSelectionSort()) {
 			
 			selectionSort = new SelectionSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), selectionSortModel);
-			System.out.println("**********\nSelection Sort\n");
-			System.out.println("Tempo: " + selectionSortModel.getTempo() + "Trocas: " + selectionSortModel.getTrocas() 
-			+ "Comparações: " + selectionSortModel.getComparacoes());
+			relatorioFinal.setSelectionSortModel(selectionSortModel);
+//			System.out.println("**********\nSelection Sort\n");
+//			System.out.println("Tempo: " + selectionSortModel.getTempo() + "Trocas: " + selectionSortModel.getTrocas() 
+//			+ "Comparações: " + selectionSortModel.getComparacoes());
 		}
 		
 		//Comb Sort.
 		if(modelMS.isCheckCombSort()) {
 			
 			combSort = new CombSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), combSortModel);
-			System.out.println("**********\nComb Sort\n");
-			System.out.println("Tempo: " + combSortModel.getTempo() + "Trocas: " + combSortModel.getTrocas() 
-			+ "Comparações: " + combSortModel.getComparacoes());
+			relatorioFinal.setCombSortModel(combSortModel);
+//			System.out.println("**********\nComb Sort\n");
+//			System.out.println("Tempo: " + combSortModel.getTempo() + "Trocas: " + combSortModel.getTrocas() 
+//			+ "Comparações: " + combSortModel.getComparacoes());
 		}
 	}
+	
+	public RelatorioModel getRelatorioFinal() {
+		return relatorioFinal;
+	}
+	
 }

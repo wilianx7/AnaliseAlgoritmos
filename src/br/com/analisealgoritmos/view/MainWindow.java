@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
 
 public class MainWindow extends JFrame{
 	private static final long serialVersionUID = 2630247367422389726L;
-	
+		
 	private JMenu menuOrdenacao;
 	private JMenu menuPesquisa;
 	
@@ -85,7 +85,7 @@ public class MainWindow extends JFrame{
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frameOrdenacaoSimples = new OrdenacaoSimplesWindow();
+				frameOrdenacaoSimples = new OrdenacaoSimplesWindow(desktop);
 				abrirFrame(frameOrdenacaoSimples);
 			}
 		});
@@ -101,7 +101,6 @@ public class MainWindow extends JFrame{
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO: Abrir janela dos métodos de ordenação sofisticados.
-				
 			}
 		});
 

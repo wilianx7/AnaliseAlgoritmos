@@ -1,132 +1,102 @@
 package br.com.analisealgoritmos.model;
 
 public class RelatorioModel {
-
-	//Tempos.
-	private String tempoInsertionSort;
-	private String tempoSelectionSort;
-	private String tempoBubbleSort;
-	private String tempoCombSort;
 	
-	//Trocas.
-	private String trocasInsertionSort;
-	private String trocasSelectionSort;
-	private String trocasBubbleSort;
-	private String trocasCombSort;
+	//Insertion Sort.
+	InsertionSortModel insertionSortModel;
 	
-	//Comparações.
-	private String comparacoesInsertionSort;
-	private String comparacoesSelectionSort;
-	private String comparacoesBubbleSort;
-	private String comparacoesCombSort;
+	//Bubble Sort.
+	BubbleSortModel bubbleSortModel;
+	
+	//Selection Sort.
+	SelectionSortModel selectionSortModel;
+	
+	//Comb Sort.
+	CombSortModel combSortModel;
 	
 	//Valores.
-	private String qtdValores;
+	private int qtdValores;
+	
+	//Atributos.
+	private boolean tempo;
+	private boolean trocas;
+	private boolean comparacoes;
 
-	public String getTempoInsertionSort() {
-		return tempoInsertionSort;
+//	public RelatorioModel(InsertionSortModel insertionSortModel, BubbleSortModel bubbleSortModel,
+//			SelectionSortModel selectionSortModel, CombSortModel combSortModel) {
+//		
+//		this.insertionSortModel = insertionSortModel;
+//		this.bubbleSortModel = bubbleSortModel;
+//		this.selectionSortModel = selectionSortModel;
+//		this.combSortModel = combSortModel;
+//	}
+	
+	public RelatorioModel() {
+		
 	}
 
-	public void setTempoInsertionSort(String tempoInsertionSort) {
-		this.tempoInsertionSort = tempoInsertionSort;
+	public InsertionSortModel getInsertionSortModel() {
+		return insertionSortModel;
 	}
 
-	public String getTempoSelectionSort() {
-		return tempoSelectionSort;
+	public void setInsertionSortModel(InsertionSortModel insertionSortModel) {
+		this.insertionSortModel = insertionSortModel;
 	}
 
-	public void setTempoSelectionSort(String tempoSelectionSort) {
-		this.tempoSelectionSort = tempoSelectionSort;
+	public BubbleSortModel getBubbleSortModel() {
+		return bubbleSortModel;
 	}
 
-	public String getTempoBubbleSort() {
-		return tempoBubbleSort;
+	public void setBubbleSortModel(BubbleSortModel bubbleSortModel) {
+		this.bubbleSortModel = bubbleSortModel;
 	}
 
-	public void setTempoBubbleSort(String tempoBubbleSort) {
-		this.tempoBubbleSort = tempoBubbleSort;
+	public SelectionSortModel getSelectionSortModel() {
+		return selectionSortModel;
 	}
 
-	public String getTempoCombSort() {
-		return tempoCombSort;
+	public void setSelectionSortModel(SelectionSortModel selectionSortModel) {
+		this.selectionSortModel = selectionSortModel;
 	}
 
-	public void setTempoCombSort(String tempoCombSort) {
-		this.tempoCombSort = tempoCombSort;
+	public CombSortModel getCombSortModel() {
+		return combSortModel;
 	}
 
-	public String getTrocasInsertionSort() {
-		return trocasInsertionSort;
+	public void setCombSortModel(CombSortModel combSortModel) {
+		this.combSortModel = combSortModel;
 	}
 
-	public void setTrocasInsertionSort(String trocasInsertionSort) {
-		this.trocasInsertionSort = trocasInsertionSort;
-	}
-
-	public String getTrocasSelectionSort() {
-		return trocasSelectionSort;
-	}
-
-	public void setTrocasSelectionSort(String trocasSelectionSort) {
-		this.trocasSelectionSort = trocasSelectionSort;
-	}
-
-	public String getTrocasBubbleSort() {
-		return trocasBubbleSort;
-	}
-
-	public void setTrocasBubbleSort(String trocasBubbleSort) {
-		this.trocasBubbleSort = trocasBubbleSort;
-	}
-
-	public String getTrocasCombSort() {
-		return trocasCombSort;
-	}
-
-	public void setTrocasCombSort(String trocasCombSort) {
-		this.trocasCombSort = trocasCombSort;
-	}
-
-	public String getComparacoesInsertionSort() {
-		return comparacoesInsertionSort;
-	}
-
-	public void setComparacoesInsertionSort(String comparacoesInsertionSort) {
-		this.comparacoesInsertionSort = comparacoesInsertionSort;
-	}
-
-	public String getComparacoesSelectionSort() {
-		return comparacoesSelectionSort;
-	}
-
-	public void setComparacoesSelectionSort(String comparacoesSelectionSort) {
-		this.comparacoesSelectionSort = comparacoesSelectionSort;
-	}
-
-	public String getComparacoesBubbleSort() {
-		return comparacoesBubbleSort;
-	}
-
-	public void setComparacoesBubbleSort(String comparacoesBubbleSort) {
-		this.comparacoesBubbleSort = comparacoesBubbleSort;
-	}
-
-	public String getComparacoesCombSort() {
-		return comparacoesCombSort;
-	}
-
-	public void setComparacoesCombSort(String comparacoesCombSort) {
-		this.comparacoesCombSort = comparacoesCombSort;
-	}
-
-	public String getQtdValores() {
+	public int getQtdValores() {
 		return qtdValores;
 	}
 
-	public void setQtdValores(String qtdValores) {
+	public void setQtdValores(int qtdValores) {
 		this.qtdValores = qtdValores;
 	}
-	
-	
-	
+
+	public boolean isTempo() {
+		return tempo;
+	}
+
+	public void setTempo(boolean tempo) {
+		this.tempo = tempo;
+	}
+
+	public boolean isTrocas() {
+		return trocas;
+	}
+
+	public void setTrocas(boolean trocas) {
+		this.trocas = trocas;
+	}
+
+	public boolean isComparacoes() {
+		return comparacoes;
+	}
+
+	public void setComparacoes(boolean comparacoes) {
+		this.comparacoes = comparacoes;
+	}	
+		
 }
