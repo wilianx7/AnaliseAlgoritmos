@@ -21,7 +21,9 @@ public class MainWindow extends JFrame{
 	private JMenu menuOrdenacao;
 	private JMenu menuPesquisa;
 	
+	// Frames.
 	private OrdenacaoSimplesWindow frameOrdenacaoSimples;
+	private OrdenacaoSofisticadaWindow frameOrdenacaoSofisticada;
 
 	private JDesktopPane desktop;
 	
@@ -72,8 +74,7 @@ public class MainWindow extends JFrame{
 		menuPesquisa.setText("Algoritmos de Pesquisa");
 		menuPesquisa.setFont(getDefaultFont());
 		menuPesquisa.add(getMenuItemPesquisaBinaria());
-		menuPesquisa.add(getMenuItemPesquisaLinear());
-		menuPesquisa.add(getMenuItemBogoBusca());		
+		menuPesquisa.add(getMenuItemPesquisaLinear());	
 
 		return menuPesquisa;
 	}
@@ -100,7 +101,8 @@ public class MainWindow extends JFrame{
 
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO: Abrir janela dos métodos de ordenação sofisticados.
+				frameOrdenacaoSofisticada = new OrdenacaoSofisticadaWindow(desktop);
+				abrirFrame(frameOrdenacaoSofisticada);
 			}
 		});
 
@@ -130,21 +132,6 @@ public class MainWindow extends JFrame{
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO: Abrir janela da pesquisa sequencial.
-				
-			}
-		});
-
-		return menuItem;
-	}
-	
-	private JMenuItem getMenuItemBogoBusca() {
-		JMenuItem menuItem = new JMenuItem();
-		menuItem.setText("Bogo Busca");
-		menuItem.setFont(getDefaultFont());
-
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO: Abrir janela do bogo busca.
 				
 			}
 		});
