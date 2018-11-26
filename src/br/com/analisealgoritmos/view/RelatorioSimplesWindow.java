@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.analisealgoritmos.model.RelatorioModel;
+import br.com.analisealgoritmos.model.RelatorioSimplesModel;
 
 public class RelatorioSimplesWindow extends AbstractWindowFrame {
 	private static final long serialVersionUID = -233330532072167956L;
@@ -38,9 +38,9 @@ public class RelatorioSimplesWindow extends AbstractWindowFrame {
 	private JTextField txfCombSortTroc;
 	
 	//Dados para o relatório.
-	private RelatorioModel relatorioModel;
+	private RelatorioSimplesModel relatorioModel;
 
-	public RelatorioSimplesWindow(RelatorioModel relatorioModel) {		
+	public RelatorioSimplesWindow(RelatorioSimplesModel relatorioModel) {		
 		super("Relatório Métodos Simples");
 		setBackground(new Color(250, 250, 250));
 		this.relatorioModel = relatorioModel;
@@ -53,7 +53,7 @@ public class RelatorioSimplesWindow extends AbstractWindowFrame {
 		//Painel Tempos.
 		panel = new JPanel();
 		panel.setBounds(new Rectangle(175, 20, 450, 190));
-		panel.setBackground(new Color(250, 250, 250));
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Tempos (ms) (" + relatorioModel.getQtdValores() + " Valores)"));
 		getContentPane().add(panel);		
@@ -121,7 +121,7 @@ public class RelatorioSimplesWindow extends AbstractWindowFrame {
 		//Painel Comparações.
 		panel = new JPanel();
 		panel.setBounds(new Rectangle(175, 230, 450, 190));
-		panel.setBackground(new Color(250, 250, 250));
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Comparações (" + relatorioModel.getQtdValores() + " Valores)"));
 		getContentPane().add(panel);		
@@ -173,7 +173,7 @@ public class RelatorioSimplesWindow extends AbstractWindowFrame {
 		//Painel Trocas.
 		panel = new JPanel();
 		panel.setBounds(new Rectangle(175, 440, 450, 190));
-		panel.setBackground(new Color(250, 250, 250));
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Trocas (" + relatorioModel.getQtdValores() + " Valores)"));
 		getContentPane().add(panel);

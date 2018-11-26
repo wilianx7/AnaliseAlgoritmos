@@ -5,7 +5,7 @@ import br.com.analisealgoritmos.model.BubbleSortModel;
 import br.com.analisealgoritmos.model.CombSortModel;
 import br.com.analisealgoritmos.model.InsertionSortModel;
 import br.com.analisealgoritmos.model.MetodosSimplesModel;
-import br.com.analisealgoritmos.model.RelatorioModel;
+import br.com.analisealgoritmos.model.RelatorioSimplesModel;
 import br.com.analisealgoritmos.model.SelectionSortModel;
 import br.com.analisealgoritmos.sortingalgorithms.BubbleSort;
 import br.com.analisealgoritmos.sortingalgorithms.CombSort;
@@ -15,7 +15,7 @@ import br.com.analisealgoritmos.sortingalgorithms.SelectionSort;
 public class RelatorioMetodosSimples {
 	
 	private MetodosSimplesModel modelMS;
-	private RelatorioModel relatorioFinal = new RelatorioModel();
+	private RelatorioSimplesModel relatorioFinal = new RelatorioSimplesModel();
 	
 	//Insertion Sort.
 	@SuppressWarnings("unused")
@@ -51,9 +51,6 @@ public class RelatorioMetodosSimples {
 			
 			insertionSort = new InsertionSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), insertionSortModel);
 			relatorioFinal.setInsertionSortModel(insertionSortModel);
-//			System.out.println("**********\nInsertion Sort\n");
-//			System.out.println("Tempo: " + insertionSortModel.getTempo() + "Trocas: " + insertionSortModel.getTrocas() 
-//			+ "Comparações: " + insertionSortModel.getComparacoes());
 		}
 		
 		//Bubble Sort.
@@ -61,9 +58,6 @@ public class RelatorioMetodosSimples {
 			
 			bubbleSort = new BubbleSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), bubbleSortModel);
 			relatorioFinal.setBubbleSortModel(bubbleSortModel);
-//			System.out.println("**********\nBubble Sort\n");
-//			System.out.println("Tempo: " + bubbleSortModel.getTempo() + "Trocas: " + bubbleSortModel.getTrocas() 
-//			+ "Comparações: " + bubbleSortModel.getComparacoes());
 		}
 		
 		//Selection Sort.
@@ -71,9 +65,6 @@ public class RelatorioMetodosSimples {
 			
 			selectionSort = new SelectionSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), selectionSortModel);
 			relatorioFinal.setSelectionSortModel(selectionSortModel);
-//			System.out.println("**********\nSelection Sort\n");
-//			System.out.println("Tempo: " + selectionSortModel.getTempo() + "Trocas: " + selectionSortModel.getTrocas() 
-//			+ "Comparações: " + selectionSortModel.getComparacoes());
 		}
 		
 		//Comb Sort.
@@ -81,13 +72,10 @@ public class RelatorioMetodosSimples {
 			
 			combSort = new CombSort(modelMS.getTipoCaso(), modelMS.getQtdValores(), combSortModel);
 			relatorioFinal.setCombSortModel(combSortModel);
-//			System.out.println("**********\nComb Sort\n");
-//			System.out.println("Tempo: " + combSortModel.getTempo() + "Trocas: " + combSortModel.getTrocas() 
-//			+ "Comparações: " + combSortModel.getComparacoes());
 		}
 	}
 	
-	public RelatorioModel getRelatorioFinal() {
+	public RelatorioSimplesModel getRelatorioFinal() {
 		return relatorioFinal;
 	}
 	

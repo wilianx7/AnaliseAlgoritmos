@@ -1,18 +1,18 @@
 package br.com.analisealgoritmos.model;
 
-public class RelatorioModel {
+public class RelatorioSimplesModel {
 	
 	//Insertion Sort.
-	InsertionSortModel insertionSortModel;
+	private InsertionSortModel insertionSortModel;
 	
 	//Bubble Sort.
-	BubbleSortModel bubbleSortModel;
+	private BubbleSortModel bubbleSortModel;
 	
 	//Selection Sort.
-	SelectionSortModel selectionSortModel;
+	private SelectionSortModel selectionSortModel;
 	
 	//Comb Sort.
-	CombSortModel combSortModel;
+	private CombSortModel combSortModel;
 	
 	//Valores.
 	private int qtdValores;
@@ -21,19 +21,6 @@ public class RelatorioModel {
 	private boolean tempo;
 	private boolean trocas;
 	private boolean comparacoes;
-
-//	public RelatorioModel(InsertionSortModel insertionSortModel, BubbleSortModel bubbleSortModel,
-//			SelectionSortModel selectionSortModel, CombSortModel combSortModel) {
-//		
-//		this.insertionSortModel = insertionSortModel;
-//		this.bubbleSortModel = bubbleSortModel;
-//		this.selectionSortModel = selectionSortModel;
-//		this.combSortModel = combSortModel;
-//	}
-	
-	public RelatorioModel() {
-		
-	}
 
 	public InsertionSortModel getInsertionSortModel() {
 		return insertionSortModel;

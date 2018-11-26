@@ -16,6 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import br.com.analisealgoritmos.model.MetodosSofisticadosModel;
+import br.com.analisealgoritmos.model.RelatorioSofisticadoModel;
+import br.com.analisealgoritmos.report.RelatorioMetodosSofisticados;
+
 public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 	private static final long serialVersionUID = -8529821438611858336L;
 
@@ -30,7 +34,6 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 	private JCheckBox checkHeapSort;
 	private JCheckBox checkQuickSort;
 	private JCheckBox checkRadixSort;
-	private JCheckBox checkTimSort;
 	private JCheckBox checkCountingSort;
 	
 	// RadioButtons Tipos de caso.
@@ -52,9 +55,9 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 	private JButton btnLimpar;
 
 	// Relatorio.
-//	private MetodosSimplesModel modelMS;
-//	private RelatorioMetodosSimples relatorioMS;
-//	private RelatorioModel relatorioFinal;
+	private MetodosSofisticadosModel modelMS;
+	private RelatorioMetodosSofisticados relatorioMS;
+	private RelatorioSofisticadoModel relatorioFinal;
 
 	// Desktop.
 	private JDesktopPane desktop;
@@ -70,7 +73,7 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 
 		// Painel Algoritmos de Ordenação.
 		panel = new JPanel();
-		panel.setBounds(new Rectangle(130, 30, 250, 210));
+		panel.setBounds(new Rectangle(130, 30, 250, 180));
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Algoritmos de Ordenação"));
@@ -116,24 +119,14 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 		descricao.setBounds(32, 110, 200, 25);
 		panel.add(descricao);
 		
-		// CheckBox Tim Sort.
-		checkTimSort = new JCheckBox();
-		checkTimSort.setBackground(Color.WHITE);
-		checkTimSort.setBounds(10, 140, 20, 25);
-		panel.add(checkTimSort);
-
-		descricao = new JLabel("Tim Sort");
-		descricao.setBounds(32, 140, 200, 25);
-		panel.add(descricao);
-		
 		// CheckBox Counting Sort.
 		checkCountingSort = new JCheckBox();
 		checkCountingSort.setBackground(Color.WHITE);
-		checkCountingSort.setBounds(10, 170, 20, 25);
+		checkCountingSort.setBounds(10, 140, 20, 25);
 		panel.add(checkCountingSort);
 
 		descricao = new JLabel("Counting Sort");
-		descricao.setBounds(32, 170, 200, 25);
+		descricao.setBounds(32, 140, 200, 25);
 		panel.add(descricao);
 
 		// Painel Tipo de Caso
@@ -257,19 +250,19 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 					}
 
 					// Constroi o modelo a partir dos dados setados na tela.
-//					modelMS = new MetodosSimplesModel(checkInsertionSort.isSelected(), checkSelectionSort.isSelected(),
-//							checkBubbleSort.isSelected(), checkCombSort.isSelected(), checkTempo.isSelected(),
-//							checkComparacoes.isSelected(), checkTrocas.isSelected(), tipoCaso,
-//							Integer.parseInt(qtdValores.getText()));
-//
-//					relatorioMS = new RelatorioMetodosSimples(modelMS);
-//					relatorioFinal = relatorioMS.getRelatorioFinal();
-//					relatorioFinal.setTempo(checkTempo.isSelected());
-//					relatorioFinal.setTrocas(checkTrocas.isSelected());
-//					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
-//
-//					RelatorioSimplesWindow relatorioSimplesWindow = new RelatorioSimplesWindow(relatorioFinal);
-//					abrirFrame(relatorioSimplesWindow);
+					modelMS = new MetodosSofisticadosModel(checkMergeSort.isSelected(), checkHeapSort.isSelected(),
+							checkQuickSort.isSelected(), checkRadixSort.isSelected(), checkCountingSort.isSelected(), checkTempo.isSelected(),
+							checkComparacoes.isSelected(), checkTrocas.isSelected(), tipoCaso,
+							Integer.parseInt(qtdValores.getText()));
+
+					relatorioMS = new RelatorioMetodosSofisticados(modelMS);
+					relatorioFinal = relatorioMS.getRelatorioFinal();
+					relatorioFinal.setTempo(checkTempo.isSelected());
+					relatorioFinal.setTrocas(checkTrocas.isSelected());
+					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
+
+					//RelatorioSofisticadoWindow relatorioSofisticadoWindow = new RelatorioSofisticadoWindow(relatorioFinal);
+					//abrirFrame(relatorioSofisticadoWindow);
 				}
 			}
 		});
@@ -297,7 +290,6 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 		checkHeapSort.setSelected(false);
 		checkQuickSort.setSelected(false);
 		checkRadixSort.setSelected(false);
-		checkTimSort.setSelected(false);
 		checkCountingSort.setSelected(false);
 
 		checkComparacoes.setSelected(false);
@@ -313,8 +305,7 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 	public String validarGeracaoRelatorio() {
 
 		if (!checkMergeSort.isSelected() && !checkHeapSort.isSelected() && !checkQuickSort.isSelected()
-				&& !checkQuickSort.isSelected() && !checkRadixSort.isSelected() && !checkTimSort.isSelected()
-				&& !checkCountingSort.isSelected()) {
+				&& !checkQuickSort.isSelected() && !checkRadixSort.isSelected() && !checkCountingSort.isSelected()) {
 			return "Selecione pelo menos um algoritmo de ordenação";
 		} else if (!r_BtnMelhorCaso.isSelected() && !r_BtnCasoMedio.isSelected() && !r_BtnPiorCaso.isSelected()) {
 			return "Selecione um tipo de caso";

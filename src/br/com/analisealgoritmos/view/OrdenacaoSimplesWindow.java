@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import br.com.analisealgoritmos.model.MetodosSimplesModel;
-import br.com.analisealgoritmos.model.RelatorioModel;
+import br.com.analisealgoritmos.model.RelatorioSimplesModel;
 import br.com.analisealgoritmos.report.RelatorioMetodosSimples;
 
 public class OrdenacaoSimplesWindow extends AbstractWindowFrame {
@@ -56,7 +56,7 @@ public class OrdenacaoSimplesWindow extends AbstractWindowFrame {
 	//Relatorio.
 	private MetodosSimplesModel modelMS;
 	private RelatorioMetodosSimples relatorioMS;
-	private RelatorioModel relatorioFinal;
+	private RelatorioSimplesModel relatorioFinal;
 	
 	//Desktop.
 	private JDesktopPane desktop;
