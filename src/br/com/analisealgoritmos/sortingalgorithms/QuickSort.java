@@ -22,7 +22,9 @@ public class QuickSort {
 		this.quickSortModel = quickSortModel;
 
 		construirArray();
-		ordenarElementos(elementos, 0, elementos.length -1);
+		// Medir o tempo de ordenação.
+		tempoInicial = System.currentTimeMillis();
+		ordenarElementos(elementos, 0, elementos.length - 1);
 		setarResultados();
 	}
 
@@ -50,16 +52,11 @@ public class QuickSort {
 
 	private void ordenarElementos(int vetor[], int inicio, int fim) {
 
-		// Medir o tempo de ordenação.
-		tempoInicial += System.currentTimeMillis();
-
 		if (inicio < fim) {
 			int posicaoPivo = separar(vetor, inicio, fim);
 			ordenarElementos(vetor, inicio, posicaoPivo - 1);
 			ordenarElementos(vetor, posicaoPivo + 1, fim);
 		}
-
-		tempoFinal += System.currentTimeMillis();
 	}
 
 	private int separar(int[] vetor, int inicio, int fim) {
@@ -67,11 +64,13 @@ public class QuickSort {
 		int i = inicio + 1, f = fim;
 		while (i <= f) {
 			comparacoes++;
-			if (vetor[i] <= pivo)
+			if (vetor[i] <= pivo) {
 				i++;
-			else if (pivo < vetor[f])
+				trocas++;
+			} else if (pivo < vetor[f]) {
 				f--;
-			else {
+				trocas++;
+			} else {
 				trocas++;
 				int troca = vetor[i];
 				vetor[i] = vetor[f];
@@ -86,6 +85,8 @@ public class QuickSort {
 	}
 
 	private void setarResultados() {
+
+		tempoFinal = System.currentTimeMillis();
 
 		quickSortModel.setComparacoes(comparacoes);
 		quickSortModel.setTrocas(trocas);

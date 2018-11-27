@@ -22,6 +22,8 @@ public class MergeSort {
 		this.mergeSortModel = mergeSortModel;
 
 		construirArray();
+		// Medir o tempo de ordenação.
+		tempoInicial = System.currentTimeMillis();
 		ordenarElementos(elementos, elementos.length);
 		setarResultados();
 	}
@@ -49,9 +51,6 @@ public class MergeSort {
 	}
 
 	private void ordenarElementos(int elementos[], int n) {
-		
-		//Medir o tempo de ordenação.
-		tempoInicial += System.currentTimeMillis();
 
 		if (n < 2) {
 			return;
@@ -70,12 +69,10 @@ public class MergeSort {
 		ordenarElementos(r, n - mid);
 
 		merge(elementos, l, r, mid, n - mid);
-		
-		tempoFinal += System.currentTimeMillis();
 	}
 
 	private void merge(int[] a, int[] l, int[] r, int left, int right) {
-		
+
 		int i = 0, j = 0, k = 0;
 		while (i < left && j < right) {
 			comparacoes++;
@@ -83,6 +80,7 @@ public class MergeSort {
 				trocas++;
 				a[k++] = l[i++];
 			} else {
+				trocas++;
 				a[k++] = r[j++];
 			}
 		}
@@ -96,6 +94,7 @@ public class MergeSort {
 
 	private void setarResultados() {
 
+		tempoFinal = System.currentTimeMillis();
 		mergeSortModel.setComparacoes(comparacoes);
 		mergeSortModel.setTrocas(trocas);
 		mergeSortModel.setTempo(tempoFinal - tempoInicial);

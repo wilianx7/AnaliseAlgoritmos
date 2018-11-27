@@ -261,8 +261,8 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 					relatorioFinal.setTrocas(checkTrocas.isSelected());
 					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
 
-					//RelatorioSofisticadoWindow relatorioSofisticadoWindow = new RelatorioSofisticadoWindow(relatorioFinal);
-					//abrirFrame(relatorioSofisticadoWindow);
+					RelatorioSofisticadoWindow relatorioSofisticadoWindow = new RelatorioSofisticadoWindow(relatorioFinal);
+					abrirFrame(relatorioSofisticadoWindow);
 				}
 			}
 		});

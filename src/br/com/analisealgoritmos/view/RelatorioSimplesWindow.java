@@ -223,7 +223,7 @@ public class RelatorioSimplesWindow extends AbstractWindowFrame {
 		panel.add(txfCombSortTroc);
 	}
 	
-	public void inserirDados() {
+	private void inserirDados() {
 		
 		//Tempos.
 		if(relatorioModel.isTempo()) {

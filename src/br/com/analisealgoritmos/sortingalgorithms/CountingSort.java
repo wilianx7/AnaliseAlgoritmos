@@ -17,15 +17,15 @@ public class CountingSort {
 	private CountingSortModel countingSortModel;
 
 	public CountingSort(int tipoCaso, int qtdValores, CountingSortModel countingSortModel) {
-			this.tipoCaso = tipoCaso;
-			this.qtdValores = qtdValores;
-			this.countingSortModel = countingSortModel;
+		this.tipoCaso = tipoCaso;
+		this.qtdValores = qtdValores;
+		this.countingSortModel = countingSortModel;
 
-			construirArray();
-			ordenarElementos();
-			setarResultados();
+		construirArray();
+		ordenarElementos(elementos);
+		setarResultados();
 	}
-	
+
 	private void construirArray() {
 
 		elementos = new int[qtdValores];
@@ -47,44 +47,58 @@ public class CountingSort {
 		}
 
 	}
-	
-	private void ordenarElementos() {
-		
-		//Medir o tempo de ordenação.
+
+	private void ordenarElementos(int[] v) {
+
+		// Medir o tempo de ordenação.
 		tempoInicial = System.currentTimeMillis();
-		
-		int n = elementos.length;
-        
-        int vetorAuxiliar[] = new int[n];
-         
-        for(int i = 0; i < n; i++){
-            vetorAuxiliar[i] = 0;
-        }
-        
-        for(int i = 0; i < n; i++){
-            vetorAuxiliar[elementos[i]]++;
-        }
-        
-        int sum = 0;                
-        for(int i = 1; i < n; i++){
-            int dum = vetorAuxiliar[i];
-            vetorAuxiliar[i] = sum;
-            sum += dum;
-        }       
-        int vetorOrdenado[] = new int[n];
-        for(int i = 0; i < n; i++){
-        	trocas++;
-            vetorOrdenado[vetorAuxiliar[elementos[i]]] = elementos[i];
-            vetorAuxiliar[elementos[i]]++;
-        }
-        
-        for (int i = 0; i < n; i++){
-            elementos[i] = vetorOrdenado[i];
-        }
-		
-        tempoFinal = System.currentTimeMillis();
+
+		int maior = v[0];
+		for (int i = 1; i < v.length; i++) {
+			comparacoes++;
+			if (v[i] > maior) {
+				maior = v[i];
+			}
+		}
+
+		// frequencia
+		int[] c = new int[maior];
+		for (int i = 0; i < v.length; i++) {
+			try {
+				c[v[i] - 1] += 1;
+			} catch (Exception e) {
+				break;
+			}
+		}
+
+		// cumulativa
+		for (int i = 1; i < maior; i++) {
+			trocas++;
+			c[i] += c[i - 1];
+		}
+
+		Integer[] b = new Integer[v.length];
+		for (int i = 0; i < b.length; i++) {
+			try {
+				b[c[v[i] - 1] - 1] = v[i];
+				c[v[i] - 1]--;
+			} catch (Exception e) {
+				break;
+			}
+		}
+
+		for (int i = 0; i < b.length; i++) {
+			try {
+				v[i] = b[i];
+			} catch (Exception e) {
+				break;
+			}
+
+		}
+
+		tempoFinal = System.currentTimeMillis();
 	}
-	
+
 	private void setarResultados() {
 
 		countingSortModel.setComparacoes(comparacoes);

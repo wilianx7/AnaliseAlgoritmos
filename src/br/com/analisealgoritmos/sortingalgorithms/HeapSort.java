@@ -21,7 +21,9 @@ public class HeapSort {
 		this.qtdValores = qtdValores;
 		this.heapSortModel = heapSortModel;
 
-		construirArray();
+		construirArray();		
+		//Medir o tempo de ordenação.
+		tempoInicial += System.currentTimeMillis();
 		ordenarElementos();
 		setarResultados();
 	}
@@ -50,9 +52,6 @@ public class HeapSort {
 
 	private void ordenarElementos() {
 		
-		//Medir o tempo de ordenação.
-		tempoInicial += System.currentTimeMillis();
-		
 		int n = elementos.length;
 
 		for (int i = n / 2 - 1; i >= 0; i--)
@@ -65,8 +64,6 @@ public class HeapSort {
 
 			heapify(elementos, i, 0);
 		}
-		
-		tempoFinal += System.currentTimeMillis();
 	}
 
 	void heapify(int arr[], int n, int i) {
@@ -92,6 +89,8 @@ public class HeapSort {
 	}
 
 	private void setarResultados() {
+		
+		tempoFinal += System.currentTimeMillis();
 
 		heapSortModel.setComparacoes(comparacoes);
 		heapSortModel.setTrocas(trocas);

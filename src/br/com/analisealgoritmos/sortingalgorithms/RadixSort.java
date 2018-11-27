@@ -1,12 +1,14 @@
 package br.com.analisealgoritmos.sortingalgorithms;
 
+import java.util.Arrays;
+
 import br.com.analisealgoritmos.model.RadixSortModel;
 
 public class RadixSort {
 
 	// Atributos.
-	private int trocas = 0;
-	private int comparacoes = 0;
+	private static int trocas = 0;
+	private static int comparacoes = 0;
 	private long tempoInicial;
 	private long tempoFinal;
 
@@ -22,7 +24,9 @@ public class RadixSort {
 		this.radixSortModel = radixSortModel;
 
 		construirArray();
-		ordenarElementos(elementos.length, elementos);
+		// Medir o tempo de ordenação.
+		tempoInicial = System.currentTimeMillis();
+		ordenarElementos(elementos, elementos.length);
 		setarResultados();
 	}
 
@@ -48,69 +52,51 @@ public class RadixSort {
 
 	}
 
-	private void ordenarElementos(int n, int data[]) {
-
-		// Medir o tempo de ordenação.
-		tempoInicial = System.currentTimeMillis();
-		
-		int temp = 0;
-		int j = 0;
-
-		int d = log10(maior(data, n));
-
-		for (int k = 0; k < d; k++) {
-			for (int i = 0; i < n; i++) {
-				int min = i;
-				for (j = i + 1; j <= n - 1; j++)
-					comparacoes++;
-					if (dig(data[j], k) < dig(data[min], k))
-						min = j;
-				temp = data[i];
-				data[i] = data[min];
-				data[min] = temp;
+	static int getMax(int arr[], int n) {
+		int mx = arr[0];
+		for (int i = 1; i < n; i++) {
+			comparacoes++;
+			if (arr[i] > mx) {
 				trocas++;
+				mx = arr[i];
 			}
-			
 		}
-		
-		tempoFinal = System.currentTimeMillis();
+		return mx;
 	}
 
-	int dig(int n, int p) {
-		int d = 0;
-		while (n >= pot(10, p)) {
-			d++;
-			n = n - pot(10, p);
+	static void countSort(int arr[], int n, int exp) {
+		int output[] = new int[n];
+		int i;
+		int count[] = new int[10];
+		Arrays.fill(count, 0);
+
+		for (i = 0; i < n; i++)
+			count[(arr[i] / exp) % 10]++;
+
+		for (i = 1; i < 10; i++)
+			count[i] += count[i - 1];
+
+		for (i = n - 1; i >= 0; i--) {
+			output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+			trocas++;
+			count[(arr[i] / exp) % 10]--;
 		}
-		return d;
+
+		for (i = 0; i < n; i++)
+			arr[i] = output[i];
 	}
 
-	int pot(int b, int e) {
-		int p = 1;
-		if (e != 0)
-			for (int i = 1; i > e; i++)
-				p = p * b;
-		return p;
-	}
+	static void ordenarElementos(int arr[], int n) {
 
-	int log10(int n) {
-		int l = 0;
-		int b = 1;
-		while (b < n)
-			b = b * 10;
-		l++;
-		return l;
-	}
+		int m = getMax(arr, n);
 
-	int maior(int data[], int n) {
-		int j = 0;
-		for (int i = 0; i < n; i++)
-			if (data[i] > j)
-				j = data[i];
-		return j;
+		for (int exp = 1; m / exp > 0; exp *= 10)
+			countSort(arr, n, exp);
 	}
 
 	private void setarResultados() {
+
+		tempoFinal = System.currentTimeMillis();
 
 		radixSortModel.setComparacoes(comparacoes);
 		radixSortModel.setTrocas(trocas);
