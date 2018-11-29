@@ -319,6 +319,9 @@ public class OrdenacaoSofisticadaWindow  extends AbstractWindowFrame {
 			return "O campo 'Quantidade de Valores' não pode conter letras";
 		} else if (Integer.parseInt(qtdValores.getText()) <= 0) {
 			return "O campo 'Quantidade de Valores' não pode conter números negativos ou iguais a 0.";
+		} else if (checkQuickSort.isSelected() && r_BtnMelhorCaso.isSelected() && Integer.parseInt(qtdValores.getText()) > 15000 ||
+				checkQuickSort.isSelected() && r_BtnPiorCaso.isSelected() && Integer.parseInt(qtdValores.getText()) > 14000) {
+			return "OverFlow - Quick Sort";
 		}
 
 		return "";

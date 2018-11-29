@@ -16,6 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import br.com.analisealgoritmos.model.AlgoritmosPesquisaModel;
+import br.com.analisealgoritmos.model.RelatorioPesquisaModel;
+import br.com.analisealgoritmos.report.RelatorioPesquisa;
+
 public class AlgoritmosPesquisaWindow extends AbstractWindowFrame {
 	private static final long serialVersionUID = 8929678355717574002L;
 
@@ -41,15 +45,16 @@ public class AlgoritmosPesquisaWindow extends AbstractWindowFrame {
 
 	// Quantidade de valores.
 	private JTextField qtdValores;
+	private JTextField valorAlvo;
 
 	// Botões.
 	private JButton btnRelatorio;
 	private JButton btnLimpar;
 
 //	// Relatorio.
-//	private MetodosSimplesModel modelMS;
-//	private RelatorioMetodosSimples relatorioMS;
-//	private RelatorioSimplesModel relatorioFinal;
+	private AlgoritmosPesquisaModel modelPesquisa;
+	private RelatorioPesquisa relatorioPesquisa;
+	private RelatorioPesquisaModel relatorioFinal;
 
 	// Desktop.
 	private JDesktopPane desktop;
@@ -179,6 +184,15 @@ public class AlgoritmosPesquisaWindow extends AbstractWindowFrame {
 		qtdValores.setBounds(10, 45, 135, 25);
 		panel.add(qtdValores);
 
+		// Valor Alvo.
+		descricao = new JLabel("Valor Procurado:");
+		descricao.setBounds(10, 75, 200, 25);
+		panel.add(descricao);
+
+		valorAlvo = new JTextField();
+		valorAlvo.setBounds(10, 100, 135, 25);
+		panel.add(valorAlvo);
+
 		// Botão Gerar Relatório.
 		btnRelatorio = new JButton(new AbstractAction("Gerar Relatório") {
 			private static final long serialVersionUID = -4063844540853297599L;
@@ -193,30 +207,29 @@ public class AlgoritmosPesquisaWindow extends AbstractWindowFrame {
 				} else {
 
 					// Determina o tipo de caso escolhido.
-//					int tipoCaso;
-//
-//					if (r_BtnMelhorCaso.isSelected()) {
-//						tipoCaso = 1;
-//					} else if (r_BtnCasoMedio.isSelected()) {
-//						tipoCaso = 2;
-//					} else {
-//						tipoCaso = 3;
-//					}
+					int tipoCaso;
+
+					if (r_BtnMelhorCaso.isSelected()) {
+						tipoCaso = 1;
+					} else if (r_BtnCasoMedio.isSelected()) {
+						tipoCaso = 2;
+					} else {
+						tipoCaso = 3;
+					}
 
 					// Constroi o modelo a partir dos dados setados na tela.
-//					modelMS = new MetodosSimplesModel(checkInsertionSort.isSelected(), checkSelectionSort.isSelected(),
-//							checkBubbleSort.isSelected(), checkCombSort.isSelected(), checkTempo.isSelected(),
-//							checkComparacoes.isSelected(), checkTrocas.isSelected(), tipoCaso,
-//							Integer.parseInt(qtdValores.getText()));
-//
-//					relatorioMS = new RelatorioMetodosSimples(modelMS);
-//					relatorioFinal = relatorioMS.getRelatorioFinal();
-//					relatorioFinal.setTempo(checkTempo.isSelected());
-//					relatorioFinal.setTrocas(checkTrocas.isSelected());
-//					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
-//
-//					RelatorioSimplesWindow relatorioSimplesWindow = new RelatorioSimplesWindow(relatorioFinal);
-//					abrirFrame(relatorioSimplesWindow);
+					modelPesquisa = new AlgoritmosPesquisaModel(checkPesquisaLinear.isSelected(),
+							checkPesquisaBinaria.isSelected(), checkTempo.isSelected(), checkComparacoes.isSelected(),
+							tipoCaso, Integer.parseInt(qtdValores.getText()), Integer.parseInt(valorAlvo.getText()));
+
+					relatorioPesquisa = new RelatorioPesquisa(modelPesquisa);
+					relatorioFinal = relatorioPesquisa.getRelatorioFinal();
+					relatorioFinal.setValorAlvo(Integer.parseInt(valorAlvo.getText()));
+					relatorioFinal.setTempo(checkTempo.isSelected());
+					relatorioFinal.setComparacoes(checkComparacoes.isSelected());
+
+					RelatorioPesquisaWindow relatorioPesquisaWindow = new RelatorioPesquisaWindow(relatorioFinal);
+					abrirFrame(relatorioPesquisaWindow);
 				}
 			}
 		});
@@ -269,6 +282,13 @@ public class AlgoritmosPesquisaWindow extends AbstractWindowFrame {
 			return "O campo 'Quantidade de Valores' não pode conter letras";
 		} else if (Integer.parseInt(qtdValores.getText()) <= 0) {
 			return "O campo 'Quantidade de Valores' não pode conter números negativos ou iguais a 0.";
+		} else if(valorAlvo.getText().isEmpty()) {
+			return "Digite o valor a ser pesquisado";
+		} else if (verificarLetras(valorAlvo.getText())) {
+			return "O campo 'Valor Procurado' não pode conter letras";
+		} else if (checkPesquisaBinaria.isSelected() && r_BtnCasoMedio.isSelected() ||
+				checkPesquisaBinaria.isSelected() && r_BtnPiorCaso.isSelected()) {
+			return "A pesquisa binária só pode ser utilizada para o melhor caso";
 		}
 
 		return "";
