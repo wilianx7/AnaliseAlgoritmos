@@ -24,6 +24,7 @@ public class MainWindow extends JFrame{
 	// Frames.
 	private OrdenacaoSimplesWindow frameOrdenacaoSimples;
 	private OrdenacaoSofisticadaWindow frameOrdenacaoSofisticada;
+	private AlgoritmosPesquisaWindow frameAlgoritmosPesquisa;
 
 	private JDesktopPane desktop;
 	
@@ -73,8 +74,7 @@ public class MainWindow extends JFrame{
 		menuPesquisa = new JMenu();
 		menuPesquisa.setText("Algoritmos de Pesquisa");
 		menuPesquisa.setFont(getDefaultFont());
-		menuPesquisa.add(getMenuItemPesquisaBinaria());
-		menuPesquisa.add(getMenuItemPesquisaLinear());	
+		menuPesquisa.add(getMenuItemPesquisarValores());
 
 		return menuPesquisa;
 	}
@@ -109,30 +109,15 @@ public class MainWindow extends JFrame{
 		return menuItem;
 	}
 	
-	private JMenuItem getMenuItemPesquisaBinaria() {
+	private JMenuItem getMenuItemPesquisarValores() {
 		JMenuItem menuItem = new JMenuItem();
-		menuItem.setText("Pesquisa Binária");
+		menuItem.setText("Pesquisar Valores");
 		menuItem.setFont(getDefaultFont());
 
 		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO: Abrir janela da pesquisa binária.
-				
-			}
-		});
-
-		return menuItem;
-	}
-	
-	private JMenuItem getMenuItemPesquisaLinear() {
-		JMenuItem menuItem = new JMenuItem();
-		menuItem.setText("Pesquisa Linear");
-		menuItem.setFont(getDefaultFont());
-
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO: Abrir janela da pesquisa sequencial.
-				
+			public void actionPerformed(ActionEvent e) {				
+				frameAlgoritmosPesquisa = new AlgoritmosPesquisaWindow(desktop);
+				abrirFrame(frameAlgoritmosPesquisa);
 			}
 		});
 
